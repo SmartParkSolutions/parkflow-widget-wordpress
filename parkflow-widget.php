@@ -102,22 +102,18 @@ class ParkFlow_Widget {
                 <ul class="list-disc pl-6 mb-4">
                     <li>
                         <code class="bg-gray-200 px-2 py-1 rounded">Booking</code> - Display the reservation form
-                        <br />
                         <code>[parkflow type="Booking"]</code>
                     </li>
                     <li>
                         <code class="bg-gray-200 px-2 py-1 rounded">Manage</code> - Display the form to manage the booking by the customer
-                        <br />
                         <code>[parkflow type="Manage"]</code>
                     </li>
                     <li>
                         <code class="bg-gray-200 px-2 py-1 rounded">Contact</code> - Display the contact form
-                        <br />
                         <code>[parkflow type="Contact"]</code>
                     </li>
                     <li>
                         <code class="bg-gray-200 px-2 py-1 rounded">Pricing</code> - Display the pricing of the parking
-                        <br />
                         <code>[parkflow type="Pricing"]</code>
                     </li>
                 </ul>
