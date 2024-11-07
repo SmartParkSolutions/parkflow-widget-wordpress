@@ -7,6 +7,8 @@
  * Author: Khawar Hussain
  * Author URI: https://www.upwork.com/freelancers/khawarhusssainwaraich
  * Text Domain: parkflow-widget
+ * License: GPL-2.0-or-later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 // Exit if accessed directly
