@@ -1,5 +1,5 @@
 === ParkFlow Booking Widget ===
-Tags: parking, booking, reservation, parkflow
+Tags: parking, booking, reservation, parkflow, airport car park
 Requires at least: 5.0
 Tested up to: 6.4
 Stable tag: 1.0.0
@@ -18,7 +18,7 @@ This plugin allows you to easily integrate the ParkFlow booking widget into your
 4. Use the shortcode [parkflow] to display the booking widget
 
 == Frequently Asked Questions ==
-= How do I get my Parking UID and Tenant Domain? =
+= How do I get my Parking UUID and Tenant Domain? =
 Contact ParkFlow support to obtain your credentials.
 
 == Changelog ==

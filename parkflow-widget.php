@@ -39,8 +39,8 @@ class ParkFlow_Widget {
 
     // Register plugin settings
     public function register_settings() {
-        register_setting('parkflow_options', 'parkflow_parking_uid');
-        register_setting('parkflow_options', 'parkflow_tenant_domain');
+        register_setting('parkflow_options', 'parkflow_parking');
+        register_setting('parkflow_options', 'parkflow_tenant');
         register_setting('parkflow_options', 'parkflow_locale');
         register_setting('parkflow_options', 'parkflow_color');
     }
@@ -57,18 +57,20 @@ class ParkFlow_Widget {
                 ?>
                 <table class="form-table">
                     <tr>
-                        <th scope="row">Parking UID</th>
+                        <th scope="row">Tenant</th>
                         <td>
-                            <input type="text" name="parkflow_parking_uid" 
-                                value="<?php echo esc_attr(get_option('parkflow_parking_uid')); ?>" 
+                            <input type="text" name="parkflow_tenant" 
+                                value="<?php echo esc_attr(get_option('parkflow_tenant')); ?>" 
+                                placeholder="demo.parkflow.io"
                                 class="regular-text" />
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">Tenant Domain</th>
+                        <th scope="row">Parking</th>
                         <td>
-                            <input type="text" name="parkflow_tenant_domain" 
-                                value="<?php echo esc_attr(get_option('parkflow_tenant_domain')); ?>" 
+                            <input type="text" name="parkflow_parking" 
+                                value="<?php echo esc_attr(get_option('parkflow_parking')); ?>" 
+                                placeholder="dbaf372a-d2be-48cd-a7ba-ddb8e96473df"
                                 class="regular-text" />
                         </td>
                     </tr>
@@ -92,16 +94,32 @@ class ParkFlow_Widget {
             </form>
             <div class="bg-gray-100 p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold mb-4">Usage Instructions</h2>
-                <p class="mb-4">Use the shortcode <code class="bg-gray-200 px-2 py-1 rounded">[parkflow]</code> to display the booking widget in your posts or pages.</p>
+                <p class="mb-4">Use the shortcode <code class="bg-gray-200 px-2 py-1 rounded">[parkflow]</code> to display the widgets in your posts or pages.</p>
                 <p class="mb-4">You can also override the default settings using shortcode attributes:</p>
-                <pre class="bg-gray-200 p-4 rounded"><code>[parkflow parking="uid" tenant="domain" locale="en" color="#000000" type="Booking"]</code></pre>
+                <pre class="bg-gray-200 p-4 rounded"><code>[parkflow type="Booking" tenant="domain" parking="uuid" locale="en" color="#9155FD"]</code></pre>
 
-                <h3 class="text-xl font-bold mb-2">Available Types:</h3>
+                <h3 class="text-xl font-bold mb-2">Available widget types:</h3>
                 <ul class="list-disc pl-6 mb-4">
-                    <li><code class="bg-gray-200 px-2 py-1 rounded">Booking</code> (default)</li>
-                    <li><code class="bg-gray-200 px-2 py-1 rounded">Contact</code></li>
-                    <li><code class="bg-gray-200 px-2 py-1 rounded">Manage</code></li>
-                    <li><code class="bg-gray-200 px-2 py-1 rounded">Pricing</code></li>
+                    <li>
+                        <code class="bg-gray-200 px-2 py-1 rounded">Booking</code> - Display the reservation form
+                        <br />
+                        <code>[parkflow type="Booking"]</code>
+                    </li>
+                    <li>
+                        <code class="bg-gray-200 px-2 py-1 rounded">Manage</code> - Display the form to manage the booking by the customer
+                        <br />
+                        <code>[parkflow type="Manage"]</code>
+                    </li>
+                    <li>
+                        <code class="bg-gray-200 px-2 py-1 rounded">Contact</code> - Display the contact form
+                        <br />
+                        <code>[parkflow type="Contact"]</code>
+                    </li>
+                    <li>
+                        <code class="bg-gray-200 px-2 py-1 rounded">Pricing</code> - Display the pricing of the parking
+                        <br />
+                        <code>[parkflow type="Pricing"]</code>
+                    </li>
                 </ul>
 
                 <p>The <code class="bg-gray-200 px-2 py-1 rounded">Booking</code> type is used by default if no type is specified.</p>
@@ -125,11 +143,11 @@ class ParkFlow_Widget {
     public function parkflow_shortcode($atts) {
         // Merge default settings with shortcode attributes
         $attributes = shortcode_atts(array(
-            'parking' => get_option('parkflow_parking_uid'),
-            'tenant' => get_option('parkflow_tenant_domain'),
+            'parking' => get_option('parkflow_parking', 'dbaf372a-d2be-48cd-a7ba-ddb8e96473df'),
+            'tenant' => get_option('parkflow_tenant', 'demo.parkflow.io'),
             'locale' => get_option('parkflow_locale', 'en'),
             'color' => get_option('parkflow_color', '#9155FD'),
-            'type' => 'Pricing'
+            'type' => 'Booking'
         ), $atts);
 
         // Sanitize attributes
